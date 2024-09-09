@@ -15,6 +15,9 @@ return {
   },
   opts = {
     filesystem = {
+      filters = {
+        show_hidden = true,
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',
