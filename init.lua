@@ -678,7 +678,7 @@ require('lazy').setup({
         handlers = {
           function(server_name)
             --if server_name == 'tsserver' then
-              --server_name = 'ts_ls'
+            --server_name = 'ts_ls'
             --end
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
@@ -856,19 +856,63 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    -- 'folke/tokyonight.nvim',
+    'scottmckendry/cyberdream.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
+      -- Configure the cyberdream theme
+      require('cyberdream').setup {
+        -- Enable transparent background
+        transparent = true,
+
+        -- Enable italics comments
+        italic_comments = false,
+
+        -- Replace all fillchars with ' ' for the ultimate clean look
+        hide_fillchars = false,
+
+        -- Modern borderless telescope theme
+        borderless_telescope = true,
+
+        -- Set terminal colors
+        terminal_colors = true,
+
+        -- Cache for performance
+        cache = false,
+
+        theme = {
+          variant = 'default',
+          highlights = {
+            Comment = { fg = '#696969', bg = 'NONE', italic = true },
+          },
+          --overrides = function(colors)
+          --return {
+          --Comment = { fg = colors.green, bg = 'NONE', italic = true },
+          --['@property'] = { fg = colors.magenta, bold = true },
+          --}
+          --end,
+          colors = {
+            bg = '#000000',
+            green = '#00ff00',
+            magenta = '#ff00ff',
+          },
+        },
+        extensions = {
+          telescope = true,
+          notify = true,
+          mini = true,
+        },
+      }
+      vim.cmd 'colorscheme cyberdream'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
   },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
