@@ -671,6 +671,9 @@ require('lazy').setup({
         -- HTML (html)
         html = {},
 
+        -- HTML Boilerpate
+        emmet_ls = {},
+
         -- CSS and Tailwind CSS (cssls and tailwindcss)
         cssls = {},
         tailwindcss = {},
